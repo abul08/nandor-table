@@ -87,6 +87,7 @@ export default function DisplayBoard() {
     const [prayerData, setPrayerData] = useState<PrayerData | null>(null);
     const [nextPrayer, setNextPrayer] = useState<string | null>(null);
     const [timetableData, setTimetableData] = useState<any>(null);
+    const [error, setError] = useState<string | null>(null);
 
     const updateClock = () => {
         const now = new Date(new Date().toLocaleString("en-US", { timeZone: "Indian/Maldives" }));
@@ -132,11 +133,18 @@ export default function DisplayBoard() {
 
     const fetchTimetable = async () => {
         try {
+            setError(null);
+            console.log("Fetching timetable data...");
             const res = await fetch('/api/timetable');
+            if (!res.ok) {
+                throw new Error(`Server returned ${res.status}: ${res.statusText}`);
+            }
             const data = await res.json();
+            console.log("Data received:", data);
             setTimetableData(data);
-        } catch (err) {
-            console.error("Failed to fetch timetable", err);
+        } catch (err: any) {
+            console.error("Fetch failed:", err);
+            setError(err.message);
         }
     };
 
@@ -214,9 +222,32 @@ export default function DisplayBoard() {
 
             <div className="bottom-grid">
                 <div className="timetable-wrapper">
-                    <div className="timetable-title">TIME TABLES</div>
+                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
+                        <div className="timetable-title">TIME TABLES</div>
+                        <button
+                            onClick={fetchTimetable}
+                            style={{
+                                position: 'absolute',
+                                right: '0',
+                                top: '0',
+                                padding: '5px 10px',
+                                background: '#333',
+                                color: '#fff',
+                                border: '1px solid #444',
+                                borderRadius: '4px',
+                                fontSize: '10px',
+                                cursor: 'pointer'
+                            }}
+                        >
+                            REFRESH
+                        </button>
+                    </div>
                     <div className="timetable-grid">
-                        {timetableData ? (
+                        {error ? (
+                            <div style={{ color: '#ff4444', textAlign: 'center', gridColumn: 'span 3', padding: '20px' }}>
+                                Error loading data: {error}
+                            </div>
+                        ) : timetableData ? (
                             ['KINAN', 'MANAN', 'JINAN'].map(cat => (
                                 <TimetableCard
                                     key={cat}

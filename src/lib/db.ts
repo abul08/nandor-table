@@ -1,8 +1,9 @@
 import Database from 'better-sqlite3';
 import path from 'path';
 
-const dbPath = path.resolve(process.cwd(), 'timetable.db');
-const db = new Database(dbPath);
+const dbPath = path.join(process.cwd(), 'timetable.db');
+const db = new Database(dbPath, { verbose: console.log });
+console.log('Database initialized at:', dbPath);
 
 // Initialize database schema
 db.exec(`

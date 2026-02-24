@@ -2,11 +2,16 @@ import { NextResponse } from 'next/server';
 import db from '@/lib/db';
 import { timetableEvents } from '@/lib/events';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
+    console.log("API GET /api/timetable hit");
     try {
         const timetables = db.prepare('SELECT * FROM timetables ORDER BY category, type, row_index').all() as any[];
         const uniformDays = db.prepare('SELECT * FROM uniform_days').all() as any[];
         const holidays = db.prepare('SELECT * FROM holidays').all() as any[];
+
+        console.log(`Fetched counts - Timetables: ${timetables.length}, Uniform: ${uniformDays.length}, Holidays: ${holidays.length}`);
 
         // Grouping data by category for easier front-end consumption
         const groupedData: any = {};
