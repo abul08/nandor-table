@@ -1,0 +1,302 @@
+@import url('https://fonts.googleapis.com/css2?family=Hepta+Slab:wght@1..900&display=swap');
+
+@font-face {
+  font-family: 'MVAWaheed';
+  src: url('/fonts/MVAWaheed.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --bg-color: #000;
+  --text-primary: #fff;
+  --text-secondary: #ccc;
+  --text-muted: #aaa;
+  --card-bg: #111;
+  --border-color: #555;
+  --card-border: #444;
+  --table-border: #666;
+  --header-bg: #ddd;
+  --header-text: #000;
+  --font-family: 'Hepta Slab', serif;
+  --font-dhivehi: 'MVAWaheed', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  background: var(--bg-color);
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  min-height: 100vh;
+}
+
+.container {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-rows: 35% 65%;
+  padding: 40px 60px;
+  gap: 20px;
+}
+
+/* CLOCK */
+.clock-section {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.time {
+  font-size: 400px;
+  font-weight: 600;
+  letter-spacing: 8px;
+  line-height: 1;
+  padding-top: 150px;
+}
+
+.time span {
+  font-size: 100px;
+  font-weight: 400;
+  margin-left: -90px;
+}
+
+.date-row {
+  margin-top: 20px;
+  font-size: 40px;
+  color: var(--text-secondary);
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: -60px;
+}
+
+.hijri-container {
+  direction: rtl;
+}
+
+.hijri-month {
+  font-family: var(--font-dhivehi);
+}
+
+.hijri-num {
+  font-family: var(--font-family);
+}
+
+/* LOWER SECTION */
+.bottom-grid {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 40px;
+  margin-top: 20px;
+  overflow: hidden;
+  padding-top: 200px;
+}
+
+/* TIMETABLE */
+.timetable-wrapper {
+  border: 2px solid var(--border-color);
+  border-radius: 30px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.timetable-title {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 800;
+  margin-bottom: 20px;
+  letter-spacing: 3px;
+}
+
+.timetable-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: 25px;
+  border: 1px solid var(--card-border);
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-header {
+  text-align: center;
+  background: var(--header-bg);
+  color: var(--header-text);
+  font-size: 22px;
+  font-weight: 800;
+  padding: 10px;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+
+/* TABLE STYLE */
+.timetable-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 14px;
+}
+
+.timetable-table th,
+.timetable-table td {
+  border-bottom: 1px solid var(--table-border);
+  border-right: 1px solid var(--table-border);
+  padding: 6px 4px;
+  text-align: center;
+}
+
+/* Fix for top border on the first row of the table */
+.timetable-table thead:first-child tr:first-child th,
+.timetable-table tbody:first-child tr:first-child td {
+  border-top: 1px solid var(--table-border);
+}
+
+.timetable-table th {
+  background: #222;
+  font-weight: 700;
+}
+
+.timetable-table th:first-child,
+.timetable-table td:first-child {
+  border-left: 1px solid var(--table-border);
+}
+
+.top-left {
+  border-top-left-radius: 12px;
+}
+
+.top-right {
+  border-top-right-radius: 12px;
+}
+
+.bottom-left {
+  border-bottom-left-radius: 12px;
+}
+
+.bottom-right {
+  border-bottom-right-radius: 12px;
+}
+
+.holiday-cell {
+  background: #991b1b !important;
+  /* Dark red */
+  color: #fff !important;
+}
+
+.break-row {
+  text-align: center;
+  font-weight: 800;
+  letter-spacing: 4px;
+  padding: 10px 0;
+  color: var(--text-secondary);
+}
+
+.table-time {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-muted);
+  width: 90px;
+}
+
+.uniform {
+  margin-top: auto;
+  font-size: 12px;
+  text-align: center;
+  padding-top: 10px;
+  color: var(--text-muted);
+}
+
+.uniform span {
+  color: #fff;
+  font-weight: 700;
+}
+
+/* PRAYER PANEL */
+.prayer-panel {
+  border: 2px solid var(--border-color);
+  border-radius: 35px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.prayer-header {
+  background: var(--header-bg);
+  color: var(--header-text);
+  text-align: center;
+  padding: 15px;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.prayer-body {
+  flex: 1;
+  padding: 20px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.prayer-time-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 32px;
+  border-bottom: 1px solid #333;
+  padding: 10px 0;
+}
+
+.prayer-time-row:last-child {
+  border-bottom: none;
+}
+
+.prayer-val {
+  font-weight: 600;
+  color: #fff;
+}
+
+.prayer-lbl {
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-family: var(--font-dhivehi);
+  direction: rtl;
+}
+
+.next-prayer-highlight {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 15px 10px;
+  margin: 0 -10px;
+}
+
+@media (max-width: 1600px) {
+  .time {
+    font-size: 120px;
+  }
+
+  .container {
+    padding: 20px 40px;
+  }
+
+  .bottom-grid {
+    margin-top: 20px;
+  }
+}
