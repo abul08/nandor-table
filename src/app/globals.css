@@ -42,8 +42,8 @@ body {
   width: 100vw;
   display: grid;
   grid-template-rows: 35% 65%;
-  padding: 40px 60px;
-  gap: 20px;
+  padding: 5px 60px;
+  gap: 10px;
 }
 
 /* CLOCK */
@@ -52,30 +52,30 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-top: -30px;
 }
 
 .time {
-  font-size: 400px;
+  font-size: 500px;
   font-weight: 600;
   letter-spacing: 8px;
   line-height: 1;
-  padding-top: 150px;
 }
 
 .time span {
-  font-size: 100px;
+  font-size: 50px;
   font-weight: 400;
   margin-left: -40px;
 }
 
 .date-row {
-  margin-top: 20px;
-  font-size: 40px;
+  margin-top: 10px;
+  font-size: 25px;
   color: var(--text-secondary);
   display: flex;
   justify-content: center;
   gap: 20px;
-  margin-bottom: -60px;
+  margin-bottom: -50px;
 }
 
 .hijri-container {
@@ -94,17 +94,16 @@ body {
 .bottom-grid {
   display: grid;
   grid-template-columns: 3fr 1fr;
-  gap: 40px;
-  margin-top: 20px;
+  gap: 20px;
   overflow: hidden;
-  padding-top: 200px;
+  padding-bottom: 10px;
 }
 
 /* TIMETABLE */
 .timetable-wrapper {
   border: 2px solid var(--border-color);
   border-radius: 30px;
-  padding: 30px;
+  padding: 5px;
   display: flex;
   flex-direction: column;
   background: rgba(255, 255, 255, 0.02);
@@ -112,24 +111,25 @@ body {
 
 .timetable-title {
   text-align: center;
-  font-size: 30px;
-  font-weight: 800;
-  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
   letter-spacing: 3px;
+  margin-top: 10px;
 }
 
 .timetable-grid {
   flex: 1;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 25px;
+  gap: 15px;
 }
 
 .card {
   background: var(--card-bg);
   border-radius: 25px;
   border: 1px solid var(--card-border);
-  padding: 15px;
+  padding: 8px;
   display: flex;
   flex-direction: column;
 }
@@ -138,7 +138,7 @@ body {
   text-align: center;
   background: var(--header-bg);
   color: var(--header-text);
-  font-size: 22px;
+  font-size: 15px;
   font-weight: 800;
   padding: 10px;
   border-radius: 12px;
@@ -150,7 +150,7 @@ body {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  font-size: 14px;
+  font-size: 8px;
 }
 
 .timetable-table th,
@@ -169,7 +169,7 @@ body {
 
 .timetable-table th {
   background: #222;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .timetable-table th:first-child,
@@ -211,7 +211,7 @@ body {
   font-size: 10px;
   font-weight: 700;
   color: var(--text-muted);
-  width: 90px;
+  width: 80px;
 }
 
 .uniform {
@@ -242,7 +242,7 @@ body {
   color: var(--header-text);
   text-align: center;
   padding: 15px;
-  font-size: 28px;
+  font-size: 20px;
   font-weight: 800;
   letter-spacing: 2px;
 }
@@ -259,7 +259,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 32px;
+  font-size: 20px;
   border-bottom: 1px solid #333;
   padding: 10px 0;
 }

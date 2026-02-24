@@ -74,7 +74,7 @@ const TimetableCard = ({ name, data, uniformDays, holidays }: { name: string; da
                     ))}
                 </tbody>
             </table>
-            <div className="uniform">Second Uniform Days: <span>{activeUniformDays || 'None'}</span></div>
+            <div className="uniform">Second: <span>{activeUniformDays || 'None'}</span></div>
         </div>
     );
 };
@@ -134,13 +134,11 @@ export default function DisplayBoard() {
     const fetchTimetable = async () => {
         try {
             setError(null);
-            console.log("Fetching timetable data...");
             const res = await fetch('/api/timetable');
             if (!res.ok) {
                 throw new Error(`Server returned ${res.status}: ${res.statusText}`);
             }
             const data = await res.json();
-            console.log("Data received:", data);
             setTimetableData(data);
         } catch (err: any) {
             console.error("Fetch failed:", err);
@@ -176,7 +174,6 @@ export default function DisplayBoard() {
         const eventSource = new EventSource('/api/timetable/watch');
         eventSource.onmessage = (event) => {
             if (event.data === 'update') {
-                console.log("Timetable update received via SSE");
                 fetchTimetable();
             }
         };
@@ -222,26 +219,7 @@ export default function DisplayBoard() {
 
             <div className="bottom-grid">
                 <div className="timetable-wrapper">
-                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
-                        <div className="timetable-title">TIME TABLES</div>
-                        <button
-                            onClick={fetchTimetable}
-                            style={{
-                                position: 'absolute',
-                                right: '0',
-                                top: '0',
-                                padding: '5px 10px',
-                                background: '#333',
-                                color: '#fff',
-                                border: '1px solid #444',
-                                borderRadius: '4px',
-                                fontSize: '10px',
-                                cursor: 'pointer'
-                            }}
-                        >
-                            REFRESH
-                        </button>
-                    </div>
+                    <div className="timetable-title">TIME TABLES</div>
                     <div className="timetable-grid">
                         {error ? (
                             <div style={{ color: '#ff4444', textAlign: 'center', gridColumn: 'span 3', padding: '20px' }}>

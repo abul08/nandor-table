@@ -1,32 +1,27 @@
 import { NextResponse } from 'next/server';
-import db from '@/lib/db';
-import fs from 'fs';
-import path from 'path';
+import { supabase } from '@/lib/supabase';
 
 export const dynamic = 'force-dynamic';
 
 export async function GET() {
-    const dbPath = path.resolve(process.cwd(), 'timetable.db');
-    const exists = fs.existsSync(dbPath);
-    let stats = null;
-    if (exists) {
-        stats = fs.statSync(dbPath);
-    }
-
     try {
-        const counts = {
-            timetables: db.prepare('SELECT COUNT(*) as c FROM timetables').get() as any,
-            uniform_days: db.prepare('SELECT COUNT(*) as c FROM uniform_days').get() as any,
-            holidays: db.prepare('SELECT COUNT(*) as c FROM holidays').get() as any,
-        };
+        const { data: tCount, error: tError } = await supabase.from('timetables').select('id', { count: 'exact', head: true });
+        const { data: uCount, error: uError } = await supabase.from('uniform_days').select('category', { count: 'exact', head: true });
+        const { data: hCount, error: hError } = await supabase.from('holidays').select('category', { count: 'exact', head: true });
+
+        if (tError || uError || hError) {
+            throw tError || uError || hError;
+        }
 
         return NextResponse.json({
             status: 'ok',
             database: {
-                path: dbPath,
-                exists,
-                size: stats ? stats.size : 0,
-                counts
+                type: 'supabase',
+                counts: {
+                    timetables: tCount,
+                    uniform_days: uCount,
+                    holidays: hCount
+                }
             },
             env: process.env.NODE_ENV
         });
@@ -35,8 +30,7 @@ export async function GET() {
             status: 'error',
             error: err.message,
             database: {
-                path: dbPath,
-                exists
+                type: 'supabase'
             }
         }, { status: 500 });
     }

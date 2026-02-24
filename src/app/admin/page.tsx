@@ -12,7 +12,6 @@ export default function AdminPage() {
             const data = await res.json();
             setTimetableData(data);
         } catch (err) {
-            console.error("Failed to fetch timetable", err);
         }
     };
 
@@ -33,7 +32,7 @@ export default function AdminPage() {
             });
 
             if (res.ok) {
-                setMessage(`Updated ${category} ${type} row ${rowIndex + 1}`);
+                setMessage(`Updated ${category} ${type === 'morning' ? 'before break' : 'after break'} row ${rowIndex + 1}`);
                 fetchTimetable();
                 setTimeout(() => setMessage(""), 3000);
             }
@@ -204,7 +203,7 @@ export default function AdminPage() {
                                     gap: '10px'
                                 }}>
                                     <span style={{ width: '8px', height: '8px', background: '#333', borderRadius: '50%' }}></span>
-                                    {type} Session
+                                    {type === 'morning' ? 'before break' : 'after break'}
                                 </h3>
                                 <div style={{ overflowX: 'auto' }}>
                                     <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '16px' }}>
