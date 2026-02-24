@@ -58,7 +58,10 @@ if (count.count === 0) {
     insertTimetable.run(cat, 'afternoon', 2, '11:15 - 12:00', "CA", ...subjects.slice(1));
 
     // Uniform
-    db.prepare('INSERT INTO uniform_days (category, day) VALUES (?, ?)').run(cat, 'Sunday');
+    days.forEach(day => {
+      db.prepare('INSERT INTO uniform_days (category, day, is_uniform) VALUES (?, ?, ?)')
+        .run(cat, day, day === 'sun' ? 1 : 0);
+    });
 
     // Initial Holiday Status
     days.forEach(day => {

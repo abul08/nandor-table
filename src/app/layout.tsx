@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-    title: "Milandhoo Prayer Times",
-    description: "Accurate prayer times for Milandhoo, Maldives",
+    title: "Nandor Table",
+    description: "Developed by Nandor",
 };
 
 export default function RootLayout({
