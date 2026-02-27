@@ -246,6 +246,7 @@ export default function DisplayBoard() {
                     <div className="prayer-body">
                         {[
                             { id: "Fajr", name: "ފަތިސް" },
+                            { id: "Sunrise", name: "އިރުއެރުން" },
                             { id: "Dhuhr", name: "މެންދުރު" },
                             { id: "Asr", name: "ޢަޞްރު" },
                             { id: "Maghrib", name: "މަޣްރިބް" },
