@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 const LATITUDE = 6.2847;
 const LONGITUDE = 73.2433;
-const OFFSETS = "0,-2,-1,5,3,3,0,9,0";
+const OFFSETS = "0,-3,-1,5,3,3,0,9,0";
 
 type Timings = {
     Fajr: string;
