@@ -105,12 +105,29 @@ export default function AdminPage() {
 
     const days = ['sun', 'mon', 'tue', 'wed', 'thu'];
 
+    const refreshFrontEnd = async () => {
+        try {
+            const res = await fetch('/api/timetable/refresh', { method: 'POST' });
+            if (res.ok) {
+                setMessage("Front-end refresh signal sent!");
+                setTimeout(() => setMessage(""), 3000);
+            }
+        } catch (err) {
+            console.error("Refresh failed", err);
+        }
+    };
+
     return (
         <div className="admin-container">
             <div className="admin-content">
                 <header className="admin-header">
-                    <h1 className="admin-title">ADMIN CONSOLE</h1>
-                    <div className="admin-subtitle">TIMETABLE MANAGEMENT</div>
+                    <div>
+                        <h1 className="admin-title">ADMIN CONSOLE</h1>
+                        <div className="admin-subtitle">TIMETABLE MANAGEMENT</div>
+                    </div>
+                    <button onClick={refreshFrontEnd} className="refresh-btn">
+                        REFRESH FRONT-END
+                    </button>
                 </header>
 
                 {message && (
@@ -405,6 +422,30 @@ export default function AdminPage() {
                     box-shadow: 0 0 10px rgba(255,255,255,0.02);
                 }
 
+                .refresh-btn {
+                    background: #fff;
+                    color: #000;
+                    border: none;
+                    padding: 12px 24px;
+                    font-weight: 800;
+                    font-family: 'Hepta Slab', serif;
+                    cursor: pointer;
+                    border-radius: 4px;
+                    transition: all 0.2s;
+                    letter-spacing: 1px;
+                    font-size: 14px;
+                }
+
+                .refresh-btn:hover {
+                    background: #ccc;
+                    transform: translateY(-2px);
+                    box-shadow: 0 5px 15px rgba(255,255,255,0.1);
+                }
+
+                .refresh-btn:active {
+                    transform: translateY(0);
+                }
+
                 @media (max-width: 1024px) {
                     .admin-container {
                         padding: 40px 20px;
@@ -415,7 +456,10 @@ export default function AdminPage() {
                     .admin-header {
                         flex-direction: column;
                         align-items: flex-start;
-                        gap: 10px;
+                        gap: 15px;
+                    }
+                    .refresh-btn {
+                        width: 100%;
                     }
                     .admin-title {
                         font-size: 32px;

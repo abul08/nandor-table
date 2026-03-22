@@ -175,6 +175,8 @@ export default function DisplayBoard() {
         eventSource.onmessage = (event) => {
             if (event.data === 'update') {
                 fetchTimetable();
+            } else if (event.data === 'reload') {
+                window.location.reload();
             }
         };
 

@@ -13,7 +13,16 @@ export async function GET() {
                 }
             };
 
+            const onRefresh = () => {
+                try {
+                    controller.enqueue(`data: reload\n\n`);
+                } catch (e) {
+                    // Controller might be closed
+                }
+            };
+
             timetableEvents.on('update', onUpdate);
+            timetableEvents.on('refresh', onRefresh);
 
             // Keep connection alive with a heartbeat every 30 seconds
             const heartbeat = setInterval(() => {
@@ -24,6 +33,7 @@ export async function GET() {
 
             return () => {
                 timetableEvents.off('update', onUpdate);
+                timetableEvents.off('refresh', onRefresh);
                 clearInterval(heartbeat);
             };
         },
