@@ -106,62 +106,29 @@ export default function AdminPage() {
     const days = ['sun', 'mon', 'tue', 'wed', 'thu'];
 
     return (
-        <div style={{
-            padding: '60px 40px',
-            color: '#fff',
-            background: 'linear-gradient(135deg, #0a0a0a 0%, #000 100%)',
-            minHeight: '100vh',
-            fontFamily: "'Hepta Slab', serif",
-            lineHeight: 1.6
-        }}>
-            <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-                <header style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'baseline',
-                    marginBottom: '40px',
-                    borderBottom: '1px solid #333',
-                    paddingBottom: '20px'
-                }}>
-                    <h1 style={{ fontSize: '42px', fontWeight: 800, letterSpacing: '-1px' }}>ADMIN CONSOLE</h1>
-                    <div style={{ fontSize: '18px', color: '#888' }}>TIMETABLE MANAGEMENT</div>
+        <div className="admin-container">
+            <div className="admin-content">
+                <header className="admin-header">
+                    <h1 className="admin-title">ADMIN CONSOLE</h1>
+                    <div className="admin-subtitle">TIMETABLE MANAGEMENT</div>
                 </header>
 
                 {message && (
-                    <div style={{
-                        position: 'fixed',
-                        top: '20px',
-                        right: '20px',
-                        padding: '15px 25px',
-                        background: '#fff',
-                        color: '#000',
-                        borderRadius: '8px',
-                        fontWeight: 700,
-                        boxShadow: '0 10px 30px rgba(255,255,255,0.1)',
-                        zIndex: 1000,
-                        animation: 'slideIn 0.3s ease-out'
-                    }}>
+                    <div className="toast-message">
                         {message}
                     </div>
                 )}
 
                 {['KINAN', 'MANAN', 'JINAN'].map(cat => (
-                    <div key={cat} style={{
-                        marginBottom: '60px',
-                        background: '#0a0a0a',
-                        border: '1px solid #222',
-                        padding: '40px',
-                        borderLeft: '4px solid #fff',
-                        borderRadius: '2px'
-                    }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px', flexWrap: 'wrap', gap: '20px' }}>
-                            <h2 style={{ fontSize: '32px', fontWeight: 800, margin: 0 }}>{cat}</h2>
-                            <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
-                                <div style={{ background: '#111', padding: '10px 20px', borderRadius: '4px', border: '1px solid #333', display: 'flex', alignItems: 'center', gap: '15px' }}>
-                                    <label style={{ color: '#888', fontSize: '14px', fontWeight: 600 }}>UNIFORM DAYS:</label>
-                                    <div style={{ display: 'flex', gap: '10px' }}>
+                    <div key={cat} className="category-section">
+                        <div className="category-header">
+                            <h2 className="category-title">{cat}</h2>
+                            <div className="controls-group">
+                                <div className="control-box">
+                                    <label className="control-label">UNIFORM DAYS:</label>
+                                    <div className="checkbox-grid">
                                         {days.map(d => (
-                                            <label key={d} style={{ display: 'flex', alignItems: 'center', gap: '5px', fontSize: '12px', cursor: 'pointer' }}>
+                                            <label key={d} className="checkbox-item">
                                                 <input
                                                     type="checkbox"
                                                     checked={timetableData[cat].uniformDays[d]}
@@ -173,11 +140,11 @@ export default function AdminPage() {
                                     </div>
                                 </div>
 
-                                <div style={{ background: '#111', padding: '10px 20px', borderRadius: '4px', border: '1px solid #333', display: 'flex', alignItems: 'center', gap: '15px' }}>
-                                    <label style={{ color: '#888', fontSize: '14px', fontWeight: 600 }}>HOLIDAYS:</label>
-                                    <div style={{ display: 'flex', gap: '10px' }}>
+                                <div className="control-box">
+                                    <label className="control-label">HOLIDAYS:</label>
+                                    <div className="checkbox-grid">
                                         {days.map(d => (
-                                            <label key={d} style={{ display: 'flex', alignItems: 'center', gap: '5px', fontSize: '12px', cursor: 'pointer' }}>
+                                            <label key={d} className="checkbox-item">
                                                 <input
                                                     type="checkbox"
                                                     checked={timetableData[cat].holidays[d]}
@@ -192,26 +159,18 @@ export default function AdminPage() {
                         </div>
 
                         {['morning', 'afternoon'].map(type => (
-                            <div key={type} style={{ marginBottom: '40px' }}>
-                                <h3 style={{
-                                    textTransform: 'uppercase',
-                                    marginBottom: '20px',
-                                    fontSize: '18px',
-                                    color: '#555',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    gap: '10px'
-                                }}>
-                                    <span style={{ width: '8px', height: '8px', background: '#333', borderRadius: '50%' }}></span>
+                            <div key={type} className="timetable-section">
+                                <h3 className="section-title">
+                                    <span className="dot"></span>
                                     {type === 'morning' ? 'before break' : 'after break'}
                                 </h3>
-                                <div style={{ overflowX: 'auto' }}>
-                                    <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '16px' }}>
+                                <div className="table-wrapper">
+                                    <table className="timetable">
                                         <thead>
                                             <tr>
-                                                <th style={{ textAlign: 'left', padding: '15px', borderBottom: '2px solid #222', color: '#888', fontWeight: 600 }}>TIME</th>
+                                                <th className="time-col">TIME</th>
                                                 {days.map(d => (
-                                                    <th key={d} style={{ textAlign: 'left', padding: '15px', borderBottom: '2px solid #222', color: '#888', fontWeight: 600, textTransform: 'uppercase' }}>
+                                                    <th key={d} className="day-col">
                                                         {d}
                                                     </th>
                                                 ))}
@@ -219,12 +178,12 @@ export default function AdminPage() {
                                         </thead>
                                         <tbody>
                                             {timetableData[cat][type].map((row: any, i: number) => (
-                                                <tr key={i} style={{ transition: 'background 0.2s' }}>
-                                                    <td style={{ padding: '15px', borderBottom: '1px solid #111', fontWeight: 600, width: '150px' }}>
+                                                <tr key={i} className="table-row">
+                                                    <td className="time-cell">
                                                         {row.time_range}
                                                     </td>
                                                     {days.map(d => (
-                                                        <td key={d} style={{ padding: '10px', borderBottom: '1px solid #111' }}>
+                                                        <td key={d} className="input-cell">
                                                             <input
                                                                 type="text"
                                                                 defaultValue={row[d]}
@@ -233,18 +192,7 @@ export default function AdminPage() {
                                                                         updateCell(cat, type, i, d, e.target.value);
                                                                     }
                                                                 }}
-                                                                style={{
-                                                                    width: '100%',
-                                                                    padding: '12px',
-                                                                    background: '#050505',
-                                                                    color: '#fff',
-                                                                    border: '1px solid #1a1a1a',
-                                                                    borderRadius: '4px',
-                                                                    fontFamily: "'Hepta Slab', serif",
-                                                                    fontSize: '15px',
-                                                                    outline: 'none',
-                                                                    transition: 'all 0.2s'
-                                                                }}
+                                                                className="cell-input"
                                                             />
                                                         </td>
                                                     ))}
@@ -260,14 +208,255 @@ export default function AdminPage() {
             </div>
 
             <style jsx global>{`
-                input:focus {
+                .admin-container {
+                    padding: 60px 40px;
+                    color: #fff;
+                    background: linear-gradient(135deg, #0a0a0a 0%, #000 100%);
+                    minHeight: 100vh;
+                    font-family: 'Hepta Slab', serif;
+                    line-height: 1.6;
+                }
+
+                .admin-content {
+                    max-width: 1200px;
+                    margin: 0 auto;
+                }
+
+                .admin-header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: baseline;
+                    margin-bottom: 40px;
+                    border-bottom: 1px solid #333;
+                    padding-bottom: 20px;
+                    gap: 20px;
+                }
+
+                .admin-title {
+                    font-size: 42px;
+                    font-weight: 800;
+                    letter-spacing: -1px;
+                    margin: 0;
+                }
+
+                .admin-subtitle {
+                    font-size: 18px;
+                    color: #888;
+                }
+
+                .toast-message {
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    padding: 15px 25px;
+                    background: #fff;
+                    color: #000;
+                    border-radius: 8px;
+                    font-weight: 700;
+                    box-shadow: 0 10px 30px rgba(255,255,255,0.1);
+                    z-index: 1000;
+                    animation: slideIn 0.3s ease-out;
+                }
+
+                .category-section {
+                    margin-bottom: 60px;
+                    background: #0a0a0a;
+                    border: 1px solid #222;
+                    padding: 40px;
+                    border-left: 4px solid #fff;
+                    border-radius: 2px;
+                }
+
+                .category-header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: 30px;
+                    flex-wrap: wrap;
+                    gap: 20px;
+                }
+
+                .category-title {
+                    font-size: 32px;
+                    font-weight: 800;
+                    margin: 0;
+                }
+
+                .controls-group {
+                    display: flex;
+                    gap: 20px;
+                    flex-wrap: wrap;
+                }
+
+                .control-box {
+                    background: #111;
+                    padding: 10px 20px;
+                    border-radius: 4px;
+                    border: 1px solid #333;
+                    display: flex;
+                    align-items: center;
+                    gap: 15px;
+                }
+
+                .control-label {
+                    color: #888;
+                    font-size: 14px;
+                    font-weight: 600;
+                }
+
+                .checkbox-grid {
+                    display: flex;
+                    gap: 10px;
+                    flex-wrap: wrap;
+                }
+
+                .checkbox-item {
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                    font-size: 12px;
+                    cursor: pointer;
+                }
+
+                .timetable-section {
+                    margin-bottom: 40px;
+                }
+
+                .section-title {
+                    text-transform: uppercase;
+                    margin-bottom: 20px;
+                    font-size: 18px;
+                    color: #555;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                }
+
+                .dot {
+                    width: 8px;
+                    height: 8px;
+                    background: #333;
+                    border-radius: 50%;
+                }
+
+                .table-wrapper {
+                    overflow-x: auto;
+                    border-radius: 4px;
+                    background: #050505;
+                }
+
+                .timetable {
+                    width: 100%;
+                    border-collapse: collapse;
+                    font-size: 16px;
+                    min-width: 600px; /* Ensure table doesn't collapse too much */
+                }
+
+                .timetable th {
+                    text-align: left;
+                    padding: 15px;
+                    border-bottom: 2px solid #222;
+                    color: #888;
+                    fontWeight: 600;
+                    text-transform: uppercase;
+                }
+
+                .table-row {
+                    transition: background 0.2s;
+                }
+
+                .table-row:hover {
+                    background: #0d0d0d;
+                }
+
+                .time-cell {
+                    padding: 15px;
+                    border-bottom: 1px solid #111;
+                    font-weight: 600;
+                    width: 120px;
+                    background: #050505;
+                    position: sticky;
+                    left: 0;
+                    z-index: 1;
+                }
+
+                .input-cell {
+                    padding: 10px;
+                    border-bottom: 1px solid #111;
+                    min-width: 120px;
+                }
+
+                .cell-input {
+                    width: 100%;
+                    padding: 12px;
+                    background: #050505;
+                    color: #fff;
+                    border: 1px solid #1a1a1a;
+                    border-radius: 4px;
+                    font-family: 'Hepta Slab', serif;
+                    font-size: 15px;
+                    outline: none;
+                    transition: all 0.2s;
+                }
+
+                .cell-input:focus {
                     border-color: #555 !important;
                     background: #111 !important;
                     box-shadow: 0 0 10px rgba(255,255,255,0.02);
                 }
-                tr:hover {
-                    background: #0d0d0d;
+
+                @media (max-width: 1024px) {
+                    .admin-container {
+                        padding: 40px 20px;
+                    }
                 }
+
+                @media (max-width: 768px) {
+                    .admin-header {
+                        flex-direction: column;
+                        align-items: flex-start;
+                        gap: 10px;
+                    }
+                    .admin-title {
+                        font-size: 32px;
+                    }
+                    .category-section {
+                        padding: 20px;
+                        margin-bottom: 40px;
+                    }
+                    .category-title {
+                        font-size: 24px;
+                    }
+                    .control-box {
+                        flex-direction: column;
+                        align-items: flex-start;
+                        width: 100%;
+                        gap: 10px;
+                    }
+                    .checkbox-grid {
+                        width: 100%;
+                        justify-content: space-between;
+                    }
+                }
+
+                @media (max-width: 480px) {
+                    .admin-container {
+                        padding: 30px 15px;
+                    }
+                    .admin-title {
+                        font-size: 28px;
+                    }
+                    .checkbox-grid {
+                        display: grid;
+                        grid-template-columns: repeat(3, 1fr);
+                        gap: 8px;
+                    }
+                    .cell-input {
+                        padding: 8px;
+                        font-size: 14px;
+                    }
+                }
+
                 @keyframes slideIn {
                     from { transform: translateX(100%); opacity: 0; }
                     to { transform: translateX(0); opacity: 1; }
