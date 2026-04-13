@@ -300,3 +300,98 @@ body {
     margin-top: 20px;
   }
 }
+
+@media (max-width: 1024px) {
+  .container {
+    height: auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+  }
+  
+  .clock-section {
+    margin-top: 0;
+  }
+
+  .time {
+    font-size: 80px;
+  }
+
+  .date-row {
+    margin-bottom: 10px;
+  }
+
+  .bottom-grid {
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+
+  .time {
+    font-size: 60px;
+  }
+
+  .time span {
+    font-size: 24px;
+    margin-left: -5px;
+  }
+
+  .date-row {
+    font-size: 16px;
+    gap: 10px;
+    margin-bottom: 0px;
+  }
+
+  .timetable-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .timetable-wrapper {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .timetable-table {
+    font-size: 11px;
+    width: 100%;
+  }
+
+  .table-time {
+    font-size: 11px;
+    width: auto;
+  }
+
+  .prayer-time-row {
+    font-size: 16px;
+  }
+
+  .uniform {
+    font-size: 14px;
+    padding-bottom: 5px;
+  }
+
+  .card-header {
+    font-size: 16px;
+    padding: 12px;
+  }
+  
+  .timetable-title {
+    font-size: 18px;
+  }
+  
+  .prayer-header {
+    font-size: 18px;
+  }
+  
+  .card:not(:last-child) {
+     margin-bottom: 15px; 
+  }
+}
