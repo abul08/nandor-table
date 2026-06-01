@@ -81,7 +81,6 @@ const TimetableCard = ({ name, data, uniformDays, holidays }: { name: string; da
 
 export default function DisplayBoard() {
     const [currentTime, setCurrentTime] = useState("");
-    const [ampm, setAmpm] = useState("");
     const [gregorianDate, setGregorianDate] = useState("");
     const [hijriDate, setHijriDate] = useState<{ day: string; month: string; year: string } | null>(null);
     const [prayerData, setPrayerData] = useState<PrayerData | null>(null);
@@ -93,11 +92,9 @@ export default function DisplayBoard() {
         const now = new Date(new Date().toLocaleString("en-US", { timeZone: "Indian/Maldives" }));
         let hours = now.getHours();
         const minutes = now.getMinutes();
-        const amp = hours >= 12 ? "PM" : "AM";
         hours = hours % 12 || 12;
 
         setCurrentTime(`${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`);
-        setAmpm(amp);
 
         const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
         setGregorianDate(now.toLocaleDateString('en-US', options));
@@ -203,7 +200,7 @@ export default function DisplayBoard() {
     return (
         <div className="container">
             <div className="clock-section">
-                <div className="time">{currentTime} <span>{ampm}</span></div>
+                <div className="time">{currentTime}</div>
                 <div className="date-row">
                     <span>{gregorianDate}</span>
                     <span style={{ color: '#fff' }}>|</span>
