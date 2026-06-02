@@ -2,7 +2,7 @@ import { timetableEvents } from '@/lib/events';
 
 export const dynamic = 'force-dynamic';
 
-export async function GET() {
+export async function GET(request: Request) {
     const stream = new ReadableStream({
         start(controller) {
             const onUpdate = () => {
@@ -31,14 +31,19 @@ export async function GET() {
                 } catch (e) { }
             }, 30000);
 
-            return () => {
+            const cleanUp = () => {
                 timetableEvents.off('update', onUpdate);
                 timetableEvents.off('refresh', onRefresh);
                 clearInterval(heartbeat);
+                try {
+                    controller.close();
+                } catch (e) { }
             };
+
+            request.signal.addEventListener('abort', cleanUp);
         },
         cancel() {
-            // Handled in start clean-up
+            // Handled by signal abort
         }
     });
 
@@ -47,6 +52,7 @@ export async function GET() {
             'Content-Type': 'text/event-stream',
             'Cache-Control': 'no-cache, no-transform',
             'Connection': 'keep-alive',
+            'X-Accel-Buffering': 'no',
         },
     });
 }

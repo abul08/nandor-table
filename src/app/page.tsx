@@ -168,25 +168,42 @@ export default function DisplayBoard() {
         const prayerInterval = setInterval(fetchPrayerTimes, 3600000); // 1 hour
 
         // Real-time updates via Server-Sent Events
-        const eventSource = new EventSource('/api/timetable/watch');
-        eventSource.onmessage = (event) => {
-            if (event.data === 'update') {
-                fetchTimetable();
-            } else if (event.data === 'reload') {
-                window.location.reload();
+        let eventSource: EventSource | null = null;
+        let reconnectTimeout: NodeJS.Timeout;
+
+        const connectSSE = () => {
+            if (eventSource) {
+                eventSource.close();
             }
+
+            eventSource = new EventSource('/api/timetable/watch');
+
+            eventSource.onmessage = (event) => {
+                if (event.data === 'update') {
+                    fetchTimetable();
+                } else if (event.data === 'reload') {
+                    window.location.reload();
+                }
+            };
+
+            eventSource.onerror = () => {
+                console.error("SSE connection lost. Reconnecting in 5 seconds...");
+                if (eventSource) {
+                    eventSource.close();
+                }
+                reconnectTimeout = setTimeout(connectSSE, 5000);
+            };
         };
 
-        eventSource.onerror = () => {
-            console.error("SSE connection lost. Reconnecting...");
-            eventSource.close();
-            // Optional: fallback to polling if SSE fails
-        };
+        connectSSE();
 
         return () => {
             clearInterval(clockInterval);
             clearInterval(prayerInterval);
-            eventSource.close();
+            if (eventSource) {
+                eventSource.close();
+            }
+            clearTimeout(reconnectTimeout);
         };
     }, []);
 
