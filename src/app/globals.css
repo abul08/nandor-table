@@ -74,7 +74,7 @@ body {
   font-weight: 800;
   letter-spacing: 0;
   line-height: 0.92;
-  margin-top: 50px;
+  margin-top: 25px;
 }
 
 .date-row {
@@ -162,6 +162,7 @@ body {
   margin-bottom: 12px;
   padding: 10px;
   text-align: center;
+  letter-spacing: .5px;
 }
 
 /* TABLE STYLE */
@@ -181,7 +182,7 @@ body {
   padding: 6px 4px;
   text-align: center;
   word-break: break-word;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .timetable-table th:not(.top-left),
@@ -315,7 +316,7 @@ body {
 
 .prayer-val {
   color: var(--accent-strong);
-  font-weight: 800;
+  font-weight: 600;
 }
 
 .prayer-lbl {
@@ -323,13 +324,14 @@ body {
   direction: rtl;
   font-family: var(--font-dhivehi);
   font-weight: 600;
+  font-size: 18px !important;
 }
 
 .next-prayer-highlight {
   background: var(--accent-soft);
   border-radius: 14px;
   margin: 0 -8px;
-  padding: 14px 8px;
+  padding: 10px 8px !important;
 }
 
 @media (max-width: 1600px) {
@@ -447,7 +449,8 @@ body {
   }
 
   .timetable-table {
-    font-size: 10px;
+    font-size: 12px;
+
   }
 
   .timetable-table th,
@@ -455,9 +458,14 @@ body {
     padding: 7px 3px;
   }
 
+  .timetable-table td {
+    font-weight: 500;
+  }
+
+
   .table-time,
   .timetable-table th.top-left {
-    font-size: 10px;
+    font-size: 12px;
   }
 
   .break-row {
