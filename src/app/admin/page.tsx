@@ -95,8 +95,8 @@ export default function AdminPage() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            background: '#000',
-            color: '#fff',
+            background: '#f5f8ff',
+            color: '#142033',
             fontFamily: "'Hepta Slab', serif"
         }}>
             <div className="loading-spinner">Loading Admin Console...</div>
@@ -227,9 +227,9 @@ export default function AdminPage() {
             <style jsx global>{`
                 .admin-container {
                     padding: 60px 40px;
-                    color: #fff;
-                    background: linear-gradient(135deg, #0a0a0a 0%, #000 100%);
-                    minHeight: 100vh;
+                    color: #142033;
+                    background: #f5f8ff;
+                    min-height: 100vh;
                     font-family: 'Hepta Slab', serif;
                     line-height: 1.6;
                 }
@@ -244,7 +244,7 @@ export default function AdminPage() {
                     justify-content: space-between;
                     align-items: baseline;
                     margin-bottom: 40px;
-                    border-bottom: 1px solid #333;
+                    border-bottom: 1px solid #c6d7f2;
                     padding-bottom: 20px;
                     gap: 20px;
                 }
@@ -252,13 +252,13 @@ export default function AdminPage() {
                 .admin-title {
                     font-size: 42px;
                     font-weight: 800;
-                    letter-spacing: -1px;
+                    letter-spacing: 0;
                     margin: 0;
                 }
 
                 .admin-subtitle {
                     font-size: 18px;
-                    color: #888;
+                    color: #64748b;
                 }
 
                 .toast-message {
@@ -266,22 +266,23 @@ export default function AdminPage() {
                     top: 20px;
                     right: 20px;
                     padding: 15px 25px;
-                    background: #fff;
-                    color: #000;
-                    border-radius: 8px;
+                    background: #1d4ed8;
+                    color: #fff;
+                    border-radius: 14px;
                     font-weight: 700;
-                    box-shadow: 0 10px 30px rgba(255,255,255,0.1);
+                    box-shadow: 0 10px 30px rgba(29,78,216,0.16);
                     z-index: 1000;
                     animation: slideIn 0.3s ease-out;
                 }
 
                 .category-section {
                     margin-bottom: 60px;
-                    background: #0a0a0a;
-                    border: 1px solid #222;
+                    background: #fff;
+                    border: 1px solid #d7e4f7;
                     padding: 40px;
-                    border-left: 4px solid #fff;
-                    border-radius: 2px;
+                    border-left: 4px solid #1d4ed8;
+                    border-radius: 18px;
+                    box-shadow: 0 12px 34px rgba(29,78,216,0.08);
                 }
 
                 .category-header {
@@ -306,17 +307,17 @@ export default function AdminPage() {
                 }
 
                 .control-box {
-                    background: #111;
+                    background: #eef5ff;
                     padding: 10px 20px;
-                    border-radius: 4px;
-                    border: 1px solid #333;
+                    border-radius: 14px;
+                    border: 1px solid #c6d7f2;
                     display: flex;
                     align-items: center;
                     gap: 15px;
                 }
 
                 .control-label {
-                    color: #888;
+                    color: #64748b;
                     font-size: 14px;
                     font-weight: 600;
                 }
@@ -343,7 +344,7 @@ export default function AdminPage() {
                     text-transform: uppercase;
                     margin-bottom: 20px;
                     font-size: 18px;
-                    color: #555;
+                    color: #40516d;
                     display: flex;
                     align-items: center;
                     gap: 10px;
@@ -352,14 +353,14 @@ export default function AdminPage() {
                 .dot {
                     width: 8px;
                     height: 8px;
-                    background: #333;
+                    background: #1d4ed8;
                     border-radius: 50%;
                 }
 
                 .table-wrapper {
                     overflow-x: auto;
-                    border-radius: 4px;
-                    background: #050505;
+                    border-radius: 14px;
+                    background: #fff;
                 }
 
                 .timetable {
@@ -372,9 +373,9 @@ export default function AdminPage() {
                 .timetable th {
                     text-align: left;
                     padding: 15px;
-                    border-bottom: 2px solid #222;
-                    color: #888;
-                    fontWeight: 600;
+                    border-bottom: 2px solid #c6d7f2;
+                    color: #40516d;
+                    font-weight: 600;
                     text-transform: uppercase;
                 }
 
@@ -383,15 +384,15 @@ export default function AdminPage() {
                 }
 
                 .table-row:hover {
-                    background: #0d0d0d;
+                    background: #f8fbff;
                 }
 
                 .time-cell {
                     padding: 15px;
-                    border-bottom: 1px solid #111;
+                    border-bottom: 1px solid #d7e4f7;
                     font-weight: 600;
                     width: 120px;
-                    background: #050505;
+                    background: #fff;
                     position: sticky;
                     left: 0;
                     z-index: 1;
@@ -399,17 +400,17 @@ export default function AdminPage() {
 
                 .input-cell {
                     padding: 10px;
-                    border-bottom: 1px solid #111;
+                    border-bottom: 1px solid #d7e4f7;
                     min-width: 120px;
                 }
 
                 .cell-input {
                     width: 100%;
                     padding: 12px;
-                    background: #050505;
-                    color: #fff;
-                    border: 1px solid #1a1a1a;
-                    border-radius: 4px;
+                    background: #fff;
+                    color: #142033;
+                    border: 1px solid #c6d7f2;
+                    border-radius: 14px;
                     font-family: 'Hepta Slab', serif;
                     font-size: 15px;
                     outline: none;
@@ -417,29 +418,29 @@ export default function AdminPage() {
                 }
 
                 .cell-input:focus {
-                    border-color: #555 !important;
-                    background: #111 !important;
-                    box-shadow: 0 0 10px rgba(255,255,255,0.02);
+                    border-color: #1d4ed8 !important;
+                    background: #f8fbff !important;
+                    box-shadow: 0 0 0 3px rgba(29,78,216,0.12);
                 }
 
                 .refresh-btn {
-                    background: #fff;
-                    color: #000;
+                    background: #1d4ed8;
+                    color: #fff;
                     border: none;
                     padding: 12px 24px;
                     font-weight: 800;
                     font-family: 'Hepta Slab', serif;
                     cursor: pointer;
-                    border-radius: 4px;
+                    border-radius: 14px;
                     transition: all 0.2s;
                     letter-spacing: 1px;
                     font-size: 14px;
                 }
 
                 .refresh-btn:hover {
-                    background: #ccc;
+                    background: #1e40af;
                     transform: translateY(-2px);
-                    box-shadow: 0 5px 15px rgba(255,255,255,0.1);
+                    box-shadow: 0 5px 15px rgba(29,78,216,0.14);
                 }
 
                 .refresh-btn:active {

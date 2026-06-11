@@ -9,16 +9,22 @@
 }
 
 :root {
-  --bg-color: #000;
-  --text-primary: #fff;
-  --text-secondary: #ccc;
-  --text-muted: #aaa;
-  --card-bg: #111;
-  --border-color: #555;
-  --card-border: #444;
-  --table-border: #666;
-  --header-bg: #ddd;
-  --header-text: #000;
+  --bg-color: #f5f8ff;
+  --surface: #ffffff;
+  --surface-soft: #eef5ff;
+  --surface-muted: #dceafe;
+  --text-primary: #142033;
+  --text-secondary: #40516d;
+  --text-muted: #64748b;
+  --accent: #1e40af;
+  --accent-strong: #1e40af;
+  --accent-soft: #dbeafe;
+  --warning-bg: #fee2e2;
+  --warning-text: #991b1b;
+  --border-color: #c6d7f2;
+  --card-border: #d7e4f7;
+  --table-border: #d8e4f5;
+  --shadow: 0 16px 40px rgba(29, 78, 216, 0.1);
   --font-family: 'Hepta Slab', serif;
   --font-dhivehi: 'MVAWaheed', sans-serif;
 }
@@ -29,59 +35,61 @@
   padding: 0;
 }
 
+html {
+  background: var(--bg-color);
+}
+
 html,
 body {
-  background: linear-gradient(to bottom, #fff 0%, #c4c4c4 0%, #000 35%, #000 100%);
-  background-attachment: fixed;
   color: var(--text-primary);
   font-family: var(--font-family);
   min-height: 100vh;
 }
 
+body {
+  background: var(--bg-color);
+}
+
 .container {
-  height: 100vh;
-  width: 100vw;
+  min-height: 100vh;
+  width: 100%;
   display: grid;
-  grid-template-rows: 35% 65%;
-  padding: 5px 60px;
-  gap: 10px;
+  grid-template-rows: minmax(210px, 32vh) 1fr;
+  gap: 18px;
+  padding: 18px 56px;
 }
 
 /* CLOCK */
 .clock-section {
-  text-align: center;
+  align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top: -30px;
+  text-align: center;
 }
 
 .time {
-  color: #000;
-  font-size: clamp(120px, 11vw, 180px);
-  font-weight: 700;
-  letter-spacing: 8px;
-  line-height: 1;
-}
-
-.time span {
-  font-size: 50px;
-  font-weight: 400;
-  margin-left: -40px;
+  color: var(--accent-strong);
+  font-size: clamp(96px, 10vw, 168px);
+  font-weight: 800;
+  letter-spacing: 0;
+  line-height: 0.92;
+  margin-top: 50px;
 }
 
 .date-row {
-  margin-top: 10px;
-  font-size: 25px;
-  color: #222;
+  align-items: center;
+  color: var(--text-secondary);
   display: flex;
+  flex-wrap: wrap;
+  font-size: 24px;
+  gap: 14px;
   justify-content: center;
-  gap: 20px;
-  margin-bottom: 0;
+  margin-top: 12px;
 }
 
-.date-row span {
-  color: inherit !important;
+.date-separator {
+  color: var(--border-color);
 }
 
 .hijri-container {
@@ -99,65 +107,71 @@ body {
 /* LOWER SECTION */
 .bottom-grid {
   display: grid;
-  grid-template-columns: 3fr 1fr;
   gap: 20px;
+  grid-template-columns: minmax(0, 3fr) minmax(260px, 1fr);
+  min-height: 0;
   overflow: hidden;
   padding-bottom: 10px;
 }
 
 /* TIMETABLE */
 .timetable-wrapper {
-  border: 2px solid var(--border-color);
-  border-radius: 30px;
-  padding: 5px;
+  background: rgba(255, 255, 255, 0.76);
+  border: 1px solid var(--border-color);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
-  background: rgba(255, 255, 255, 0.02);
+  min-width: 0;
+  padding: 12px;
 }
 
 .timetable-title {
+  color: var(--accent-strong);
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin: 4px 0 12px;
   text-align: center;
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 10px;
-  letter-spacing: 3px;
-  margin-top: 10px;
 }
 
 .timetable-grid {
-  flex: 1;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
+  flex: 1;
+  gap: 14px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .card {
-  background: var(--card-bg);
-  border-radius: 25px;
+  background: var(--surface);
   border: 1px solid var(--card-border);
-  padding: 8px;
+  border-radius: 18px;
+  box-shadow: 0 10px 28px rgba(29, 78, 216, 0.08);
   display: flex;
   flex-direction: column;
+  min-width: 0;
+  padding: 8px;
 }
 
 .card-header {
-  text-align: center;
-  background: var(--header-bg);
-  color: var(--header-text);
+  background: var(--accent);
+  border-radius: 14px;
+  color: #ffffff;
   font-size: 15px;
   font-weight: 800;
+  margin-bottom: 12px;
   padding: 10px;
-  border-radius: 12px;
-  margin-bottom: 15px;
+  text-align: center;
 }
 
 /* TABLE STYLE */
 .timetable-table {
-  width: 100%;
   border-collapse: separate;
   border-spacing: 0;
+  color: var(--text-primary);
   font-size: 8px;
   table-layout: fixed;
+  width: 100%;
 }
 
 .timetable-table th,
@@ -166,6 +180,8 @@ body {
   border-right: 1px solid var(--table-border);
   padding: 6px 4px;
   text-align: center;
+  word-break: break-word;
+  font-weight: 400;
 }
 
 .timetable-table th:not(.top-left),
@@ -173,15 +189,15 @@ body {
   width: 15%;
 }
 
-/* Fix for top border on the first row of the table */
 .timetable-table thead:first-child tr:first-child th,
 .timetable-table tbody:first-child tr:first-child td {
   border-top: 1px solid var(--table-border);
 }
 
 .timetable-table th {
-  background: #222;
-  font-weight: 600;
+  background: var(--surface-soft);
+  color: var(--accent-strong);
+  font-weight: 800;
 }
 
 .timetable-table th:first-child,
@@ -206,74 +222,90 @@ body {
 }
 
 .holiday-cell {
-  background: #991b1b !important;
-  /* Dark red */
-  color: #fff !important;
+  background: var(--warning-bg) !important;
+  color: var(--warning-text) !important;
+  font-weight: 800;
 }
 
 .break-row {
-  text-align: center;
+  color: var(--accent);
   font-weight: 800;
-  letter-spacing: 4px;
-  padding: 10px 0;
-  color: var(--text-secondary);
+  letter-spacing: 3px;
+  padding: 9px 0;
+  text-align: center;
 }
 
 .table-time,
 .timetable-table th.top-left {
-  font-size: 10px;
-  font-weight: 700;
   color: var(--text-muted);
+  font-size: 10px;
+  font-weight: 800;
   width: 25%;
 }
 
 .uniform {
-  margin-top: auto;
-  font-size: 12px;
-  text-align: center;
-  padding-top: 10px;
   color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: auto;
+  padding-top: 10px;
+  text-align: center;
 }
 
 .uniform span {
-  color: #fff;
-  font-weight: 700;
+  color: var(--accent-strong);
+  font-weight: 600;
+}
+
+.error-message,
+.loading {
+  align-self: center;
+  color: var(--warning-text);
+  grid-column: 1 / -1;
+  padding: 20px;
+  text-align: center;
+}
+
+.loading {
+  color: var(--text-muted);
 }
 
 /* PRAYER PANEL */
 .prayer-panel {
-  border: 2px solid var(--border-color);
-  border-radius: 35px;
+  background: var(--surface);
+  border: 1px solid var(--border-color);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
+  min-width: 0;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.02);
 }
 
 .prayer-header {
-  background: var(--header-bg);
-  color: var(--header-text);
-  text-align: center;
-  padding: 15px;
-  font-size: 20px;
+  background: var(--accent);
+  color: #ffffff;
+  font-size: 18px;
   font-weight: 800;
   letter-spacing: 2px;
+  padding: 14px;
+  text-align: center;
 }
 
 .prayer-body {
-  flex: 1;
-  padding: 20px 30px;
   display: flex;
+  flex: 1;
   flex-direction: column;
   justify-content: space-evenly;
+  padding: 18px 22px;
 }
 
 .prayer-time-row {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  font-size: 20px;
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid var(--table-border);
+  display: flex;
+  font-size: 19px;
+  justify-content: space-between;
   padding: 10px 0;
 }
 
@@ -282,58 +314,50 @@ body {
 }
 
 .prayer-val {
-  font-weight: 600;
-  color: #fff;
+  color: var(--accent-strong);
+  font-weight: 800;
 }
 
 .prayer-lbl {
-  font-weight: 600;
   color: var(--text-secondary);
-  font-family: var(--font-dhivehi);
   direction: rtl;
+  font-family: var(--font-dhivehi);
+  font-weight: 600;
 }
 
 .next-prayer-highlight {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  padding: 15px 10px;
-  margin: 0 -10px;
+  background: var(--accent-soft);
+  border-radius: 14px;
+  margin: 0 -8px;
+  padding: 14px 8px;
 }
 
 @media (max-width: 1600px) {
-  .time {
-    font-size: 120px;
-  }
-
   .container {
-    padding: 20px 40px;
+    padding: 18px 36px;
   }
 
-  .bottom-grid {
-    margin-top: 20px;
+  .time {
+    font-size: 116px;
   }
 }
 
 @media (max-width: 1024px) {
   .container {
-    height: auto;
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    padding: 20px;
-    gap: 20px;
-  }
-
-  .clock-section {
-    margin-top: 0;
+    gap: 18px;
+    height: auto;
+    min-height: 100vh;
+    padding: 18px;
   }
 
   .time {
-    font-size: 80px;
+    font-size: 76px;
   }
 
   .date-row {
-    margin-bottom: 10px;
+    font-size: 18px;
   }
 
   .bottom-grid {
@@ -344,67 +368,120 @@ body {
 }
 
 @media (max-width: 768px) {
+  body {
+    background: var(--bg-color);
+  }
+
   .container {
-    padding: 80px 10px 10px 10px;
+    gap: 12px;
+    padding: 0 10px 14px;
+  }
+
+  .clock-section {
+    background: rgba(255, 255, 255, 0.92);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 10px 24px rgba(29, 78, 216, 0.12);
+    margin: 0 -10px;
+    padding: max(10px, env(safe-area-inset-top)) 12px 10px;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+  }
+
+  @supports (backdrop-filter: blur(14px)) {
+    .clock-section {
+      backdrop-filter: blur(14px);
+      background: rgba(255, 255, 255, 0.78);
+    }
   }
 
   .time {
-    font-size: 60px;
-  }
-
-  .time span {
-    font-size: 24px;
-    margin-left: -5px;
+    font-size: clamp(38px, 14vw, 58px);
+    line-height: 0.95;
   }
 
   .date-row {
-    font-size: 16px;
-    gap: 10px;
-    margin-bottom: 0px;
+    font-size: 13px;
+    gap: 8px;
+    line-height: 1.35;
+    margin-top: 5px;
+  }
+
+  .date-separator {
+    display: none;
+  }
+
+  .bottom-grid {
+    gap: 12px;
+    padding-bottom: 0;
+  }
+
+  .timetable-wrapper,
+  .prayer-panel {
+    box-shadow: none;
+  }
+
+  .timetable-wrapper {
+    padding: 10px;
+  }
+
+  .timetable-title {
+    font-size: 15px;
+    letter-spacing: 1.5px;
+    margin-bottom: 10px;
   }
 
   .timetable-grid {
     grid-template-columns: 1fr;
+    gap: 12px;
   }
 
-  .timetable-wrapper {
-    width: 100%;
-    margin-bottom: 20px;
+  .card {
+    padding: 8px;
+  }
+
+  .card-header {
+    font-size: 15px;
+    margin-bottom: 10px;
+    padding: 10px;
   }
 
   .timetable-table {
-    font-size: 11px;
-    width: 100%;
+    font-size: 10px;
+  }
+
+  .timetable-table th,
+  .timetable-table td {
+    padding: 7px 3px;
   }
 
   .table-time,
   .timetable-table th.top-left {
-    font-size: 11px;
+    font-size: 10px;
   }
 
-  .prayer-time-row {
-    font-size: 16px;
+  .break-row {
+    font-size: 12px;
+    padding: 8px 0;
   }
 
   .uniform {
-    font-size: 14px;
-    padding-bottom: 5px;
+    font-size: 13px;
+    padding-bottom: 3px;
   }
 
-  .card-header {
+  .prayer-header {
     font-size: 16px;
     padding: 12px;
   }
 
-  .timetable-title {
-    font-size: 18px;
+  .prayer-body {
+    gap: 4px;
+    padding: 10px 14px;
   }
 
-  .prayer-header {
-    font-size: 18px;
-  }
-
-  .card:not(:last-child) {
-    margin-bottom: 15px;
+  .prayer-time-row {
+    font-size: 16px;
+    padding: 9px 0;
   }
 }

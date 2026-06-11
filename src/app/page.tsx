@@ -220,7 +220,7 @@ export default function DisplayBoard() {
                 <div className="time">{currentTime}</div>
                 <div className="date-row">
                     <span>{gregorianDate}</span>
-                    <span style={{ color: '#fff' }}>|</span>
+                    <span className="date-separator">|</span>
                     <span className="hijri-container">
                         {hijriDate ? (
                             <>
@@ -238,7 +238,7 @@ export default function DisplayBoard() {
                     <div className="timetable-title">TIME TABLES</div>
                     <div className="timetable-grid">
                         {error ? (
-                            <div style={{ color: '#ff4444', textAlign: 'center', gridColumn: 'span 3', padding: '20px' }}>
+                            <div className="error-message">
                                 Error loading data: {error}
                             </div>
                         ) : timetableData ? (
