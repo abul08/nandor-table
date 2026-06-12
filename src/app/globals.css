@@ -59,9 +59,9 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 30px 0 15px 0;
+  padding: 35px 0 15px 0;
   text-align: center;
-  background-color: var(--text-muted);
+  background-color: var(--highlight-bg);
   position: fixed;
   top: 0;
   left: 0;
@@ -70,9 +70,9 @@ body {
 }
 
 .time {
-  color: var(--highlight-bg);
+  color: var(--text-primary);
   font-size: clamp(58px, 17vw, 78px);
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 0;
   line-height: 0.96;
   letter-spacing: .75px;
@@ -80,7 +80,7 @@ body {
 
 .date-row {
   align-items: center;
-  color: var(--panel-bg);
+  color: var(--text-secondary);
   display: flex;
   flex-wrap: wrap;
   font-size: 12px;
@@ -113,7 +113,7 @@ body {
   flex-direction: column;
   gap: 18px;
   min-width: 0;
-  margin-top: 130px;
+  margin-top: 120px;
 }
 
 /* TIMETABLE */
