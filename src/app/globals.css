@@ -9,22 +9,17 @@
 }
 
 :root {
-  --bg-color: #f5f8ff;
-  --surface: #ffffff;
-  --surface-soft: #eef5ff;
-  --surface-muted: #dceafe;
-  --text-primary: #142033;
-  --text-secondary: #40516d;
-  --text-muted: #64748b;
-  --accent: #1e40af;
-  --accent-strong: #1e40af;
-  --accent-soft: #dbeafe;
-  --warning-bg: #fee2e2;
-  --warning-text: #991b1b;
-  --border-color: #c6d7f2;
-  --card-border: #d7e4f7;
-  --table-border: #d8e4f5;
-  --shadow: 0 16px 40px rgba(29, 78, 216, 0.1);
+  --bg-color: #06151a;
+  --panel-bg: #10212b;
+  --card-bg: #06151a;
+  --header-bg: #122531;
+  --table-head-bg: #132733;
+  --line-soft: rgba(91, 112, 124, 0.22);
+  --line-strong: rgba(91, 112, 124, 0.34);
+  --text-primary: #9ba8ab;
+  --text-secondary: #4a5c6a;
+  --text-muted: #5d6b75;
+  --highlight-bg: #132633;
   --font-family: 'Hepta Slab', serif;
   --font-dhivehi: 'MVAWaheed', sans-serif;
 }
@@ -35,28 +30,27 @@
   padding: 0;
 }
 
-html {
-  background: var(--bg-color);
-}
-
 html,
 body {
+  background: var(--bg-color);
   color: var(--text-primary);
   font-family: var(--font-family);
   min-height: 100vh;
 }
 
 body {
-  background: var(--bg-color);
+  overflow-x: hidden;
 }
 
 .container {
-  min-height: 100vh;
-  width: 100%;
-  display: grid;
-  grid-template-rows: minmax(210px, 32vh) 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 18px;
-  padding: 18px 56px;
+  margin: 0 auto;
+  max-width: 430px;
+  min-height: 100vh;
+  padding: 28px 13px 32px;
+  width: 100%;
 }
 
 /* CLOCK */
@@ -65,16 +59,17 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 3px 0 0;
   text-align: center;
 }
 
 .time {
-  color: var(--accent-strong);
-  font-size: clamp(96px, 10vw, 168px);
+  color: var(--text-primary);
+  font-size: clamp(58px, 17vw, 78px);
   font-weight: 800;
   letter-spacing: 0;
-  line-height: 0.92;
-  margin-top: 15px;
+  line-height: 0.96;
+  letter-spacing: .75px;
 }
 
 .date-row {
@@ -82,14 +77,17 @@ body {
   color: var(--text-secondary);
   display: flex;
   flex-wrap: wrap;
-  font-size: 24px;
-  gap: 14px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .5px;
+  gap: 8px;
   justify-content: center;
-  margin-top: 12px;
+  line-height: 1.25;
+  margin-top: 8px;
 }
 
 .date-separator {
-  color: var(--border-color);
+  color: var(--text-muted);
 }
 
 .hijri-container {
@@ -104,85 +102,85 @@ body {
   font-family: var(--font-family);
 }
 
-/* LOWER SECTION */
 .bottom-grid {
-  display: grid;
-  gap: 20px;
-  grid-template-columns: minmax(0, 3fr) minmax(260px, 1fr);
-  min-height: 0;
-  overflow: hidden;
-  padding-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-width: 0;
 }
 
 /* TIMETABLE */
-.timetable-wrapper {
-  background: rgba(255, 255, 255, 0.76);
-  border: 1px solid var(--border-color);
-  border-radius: 18px;
-  box-shadow: var(--shadow);
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  padding: 12px;
+.timetable-wrapper,
+.prayer-panel {
+  background: var(--panel-bg);
+  border: 1px solid rgba(30, 49, 61, 0.72);
+  border-radius: 24px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.26);
+  padding: 16px 10px 12px;
+}
+
+.timetable-title,
+.prayer-header {
+  color: var(--text-primary);
+  font-size: 23px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 1;
+  text-align: center;
 }
 
 .timetable-title {
-  color: var(--accent-strong);
-  font-size: 18px;
-  font-weight: 800;
-  letter-spacing: 2px;
-  margin: 4px 0 12px;
-  text-align: center;
+  margin: 2px 0 18px;
 }
 
 .timetable-grid {
   display: grid;
-  flex: 1;
-  gap: 14px;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  grid-template-columns: 1fr;
 }
 
 .card {
-  background: var(--surface);
-  border: 1px solid var(--card-border);
+  background: var(--card-bg);
+  border: 1px solid rgba(18, 38, 49, 0.88);
   border-radius: 18px;
-  box-shadow: 0 10px 28px rgba(29, 78, 216, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(23, 47, 60, 0.45);
   display: flex;
   flex-direction: column;
   min-width: 0;
-  padding: 8px;
+  overflow: hidden;
+  padding: 8px 8px 10px;
 }
 
 .card-header {
-  background: var(--accent);
-  border-radius: 14px;
-  color: #ffffff;
-  font-size: 15px;
-  font-weight: 800;
-  margin-bottom: 12px;
-  padding: 10px;
+  background: var(--header-bg);
+  border-radius: 9px;
+  color: var(--text-primary);
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  margin-bottom: 10px;
+  padding: 9px 8px 8px;
   text-align: center;
-  letter-spacing: .5px;
 }
 
 /* TABLE STYLE */
 .timetable-table {
   border-collapse: separate;
   border-spacing: 0;
-  color: var(--text-primary);
-  font-size: 8px;
+  color: var(--text-muted);
+  font-size: 10px;
   table-layout: fixed;
   width: 100%;
 }
 
 .timetable-table th,
 .timetable-table td {
-  border-bottom: 1px solid var(--table-border);
-  border-right: 1px solid var(--table-border);
-  padding: 6px 4px;
+  border-bottom: 1px solid var(--line-soft);
+  border-right: 1px solid var(--line-soft);
+  font-weight: 600;
+  padding: 7px 3px;
   text-align: center;
   word-break: break-word;
-  font-weight: 500;
 }
 
 .timetable-table th:not(.top-left),
@@ -192,18 +190,19 @@ body {
 
 .timetable-table thead:first-child tr:first-child th,
 .timetable-table tbody:first-child tr:first-child td {
-  border-top: 1px solid var(--table-border);
+  border-top: 1px solid var(--line-soft);
 }
 
 .timetable-table th {
-  background: var(--surface-soft);
-  color: var(--accent-strong);
-  font-weight: 800;
+  background: var(--table-head-bg);
+  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 600;
 }
 
 .timetable-table th:first-child,
 .timetable-table td:first-child {
-  border-left: 1px solid var(--table-border);
+  border-left: 1px solid var(--line-soft);
 }
 
 .top-left {
@@ -223,91 +222,74 @@ body {
 }
 
 .holiday-cell {
-  background: var(--warning-bg) !important;
-  color: var(--warning-text) !important;
-  font-weight: 800;
+  background: rgba(37, 54, 66, 0.52) !important;
+  color: var(--text-secondary) !important;
 }
 
 .break-row {
-  color: var(--accent);
-  font-weight: 800;
-  letter-spacing: 3px;
-  padding: 9px 0;
-  text-align: center;
+  color: transparent;
+  font-size: 0;
+  height: 27px;
 }
 
 .table-time,
 .timetable-table th.top-left {
-  color: var(--text-muted);
+  color: var(--text-secondary);
   font-size: 10px;
   font-weight: 800;
-  width: 25%;
+  width: 26%;
 }
 
 .uniform {
-  color: var(--text-muted);
-  font-size: 12px;
-  font-weight: 600;
-  margin-top: auto;
-  padding-top: 10px;
+  color: var(--text-secondary);
+  font-size: 10px;
+  font-weight: 700;
+  margin-top: 9px;
   text-align: center;
 }
 
 .uniform span {
-  color: var(--accent-strong);
-  font-weight: 600;
+  color: var(--text-muted);
+  font-weight: 700;
 }
 
 .error-message,
 .loading {
-  align-self: center;
-  color: var(--warning-text);
+  color: var(--text-secondary);
   grid-column: 1 / -1;
-  padding: 20px;
+  padding: 18px;
   text-align: center;
-}
-
-.loading {
-  color: var(--text-muted);
 }
 
 /* PRAYER PANEL */
 .prayer-panel {
-  background: var(--surface);
-  border: 1px solid var(--border-color);
-  border-radius: 18px;
-  box-shadow: var(--shadow);
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  overflow: hidden;
+  padding: 13px 10px 10px;
 }
 
 .prayer-header {
-  background: var(--accent);
-  color: #ffffff;
-  font-size: 18px;
-  font-weight: 800;
-  letter-spacing: 2px;
-  padding: 14px;
-  text-align: center;
+  background: var(--card-bg);
+  border-radius: 18px;
+  font-size: 20px;
+  margin-bottom: 13px;
+  padding: 12px 8px 10px;
 }
 
 .prayer-body {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: space-evenly;
-  padding: 18px 22px;
+  background: var(--card-bg);
+  border: 1px solid rgba(18, 38, 49, 0.88);
+  border-radius: 16px;
+  padding: 6px 18px;
 }
 
 .prayer-time-row {
   align-items: center;
-  border-bottom: 1px solid var(--table-border);
+  border-bottom: 1px solid var(--line-strong);
+  color: var(--text-muted);
   display: flex;
-  font-size: 19px;
+  font-size: 16px;
   justify-content: space-between;
-  padding: 10px 0;
+  min-height: 38px;
+  padding: 5px 0;
 }
 
 .prayer-time-row:last-child {
@@ -315,7 +297,7 @@ body {
 }
 
 .prayer-val {
-  color: var(--accent-strong);
+  color: var(--text-muted);
   font-weight: 600;
 }
 
@@ -323,173 +305,70 @@ body {
   color: var(--text-secondary);
   direction: rtl;
   font-family: var(--font-dhivehi);
+  font-size: 16px;
   font-weight: 600;
-  font-size: 18px !important;
 }
 
 .next-prayer-highlight {
-  background: var(--accent-soft);
-  border-radius: 14px;
-  margin: 0 -8px;
-  padding: 10px 8px !important;
+  background: var(--highlight-bg);
+  border-radius: 12px;
+  margin: 0 -10px;
+  padding: 5px 10px;
 }
 
-@media (max-width: 1600px) {
+@media (min-width: 768px) {
   .container {
-    padding: 18px 36px;
+    max-width: 620px;
+    padding: 38px 20px 44px;
   }
 
   .time {
-    font-size: 116px;
-  }
-}
-
-@media (max-width: 1024px) {
-  .container {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-    height: auto;
-    min-height: 100vh;
-    padding: 18px;
-  }
-
-  .time {
-    font-size: 76px;
+    font-size: 86px;
   }
 
   .date-row {
-    font-size: 18px;
-  }
-
-  .bottom-grid {
-    display: flex;
-    flex-direction: column;
-    overflow: visible;
-  }
-}
-
-@media (max-width: 768px) {
-  body {
-    background: var(--bg-color);
-  }
-
-  .container {
-    gap: 12px;
-    padding: 0 10px 14px;
-  }
-
-  .clock-section {
-    background: rgba(255, 255, 255, 0.92);
-    border-bottom: 1px solid var(--border-color);
-    box-shadow: 0 10px 24px rgba(29, 78, 216, 0.12);
-    margin: 0 -10px;
-    padding: max(10px, env(safe-area-inset-top)) 12px 10px;
-    position: sticky;
-    top: 0;
-    z-index: 20;
-  }
-
-  @supports (backdrop-filter: blur(14px)) {
-    .clock-section {
-      backdrop-filter: blur(14px);
-      background: rgba(255, 255, 255, 0.78);
-    }
-  }
-
-  .time {
-    font-size: clamp(38px, 14vw, 58px);
-    line-height: 0.95;
-  }
-
-  .date-row {
-    font-size: 13px;
-    gap: 8px;
-    line-height: 1.35;
-    margin-top: 5px;
-  }
-
-  .date-separator {
-    display: none;
-  }
-
-  .bottom-grid {
-    gap: 12px;
-    padding-bottom: 0;
+    font-size: 14px;
   }
 
   .timetable-wrapper,
   .prayer-panel {
-    box-shadow: none;
-  }
-
-  .timetable-wrapper {
-    padding: 10px;
+    border-radius: 30px;
+    padding: 22px 16px 16px;
   }
 
   .timetable-title {
-    font-size: 15px;
-    letter-spacing: 1.5px;
-    margin-bottom: 10px;
-  }
-
-  .timetable-grid {
-    grid-template-columns: 1fr;
-    gap: 12px;
+    font-size: 30px;
   }
 
   .card {
-    padding: 8px;
+    border-radius: 22px;
+    padding: 11px 11px 13px;
   }
 
   .card-header {
-    font-size: 15px;
-    margin-bottom: 10px;
-    padding: 10px;
+    border-radius: 12px;
+    font-size: 24px;
   }
 
   .timetable-table {
-    font-size: 12px;
-
+    font-size: 13px;
   }
 
   .timetable-table th,
   .timetable-table td {
-    padding: 7px 3px;
+    padding: 8px 5px;
   }
 
-  .timetable-table td {
-    font-weight: 500;
+  .timetable-table th {
+    font-size: 15px;
   }
-
 
   .table-time,
   .timetable-table th.top-left {
-    font-size: 12px;
-  }
-
-  .break-row {
-    font-size: 12px;
-    padding: 8px 0;
+    font-size: 13px;
   }
 
   .uniform {
     font-size: 13px;
-    padding-bottom: 3px;
-  }
-
-  .prayer-header {
-    font-size: 16px;
-    padding: 12px;
-  }
-
-  .prayer-body {
-    gap: 4px;
-    padding: 10px 14px;
-  }
-
-  .prayer-time-row {
-    font-size: 16px;
-    padding: 9px 0;
   }
 }

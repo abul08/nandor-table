@@ -235,7 +235,7 @@ export default function DisplayBoard() {
 
             <div className="bottom-grid">
                 <div className="timetable-wrapper">
-                    <div className="timetable-title">TIME TABLES</div>
+                    <div className="timetable-title">TIME TABLE</div>
                     <div className="timetable-grid">
                         {error ? (
                             <div className="error-message">
